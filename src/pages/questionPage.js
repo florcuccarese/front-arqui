@@ -1,11 +1,13 @@
 import React from "react";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import NavBar from "../components/navbar.tsx";
+import NavBar from "../components/navbar.js";
 import { styled } from '@mui/material/styles';
 import ButtonBase from "@material-ui/core/ButtonBase";
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import Divider from '@mui/material/Divider';
 
 
 const MainPage = styled('div')(({ theme }) => ({
@@ -102,7 +104,15 @@ export default function QuestionPage(props) {
           <CssBaseline />
           <NavBar auth={true}/>
             <MainPage>
-                    <Box sx={{ display: 'flex', flexWrap: 'wrap', minWidth: 300, width: '100%' }}>
+            <Grid container alignItems={"center"} alignContent={"center"} spacing={11} mt={9}>
+            <Grid item xs={12}>
+            <Typography variant="h4" marked="center" align="center" component="h2" mb={6}>
+                Pregunta
+            </Typography>
+            <Divider variant='middle'></Divider>
+            </Grid>
+            <Grid item marked="center" align="center" xs={12}>
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', minWidth: 300, width: '60%' }}>
             {images.map((image) => (
                 <ImageButton
                 focusRipple
@@ -132,9 +142,10 @@ export default function QuestionPage(props) {
                 </ImageButton>
             ))}
             </Box>
-
-             
+            </Grid>
+            </Grid>
           </MainPage>
+
         </ThemeProvider>
       );
 }

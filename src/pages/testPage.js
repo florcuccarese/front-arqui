@@ -1,8 +1,8 @@
 import React from "react";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import NavBar from "../components/navbar.tsx";
-import BasicCard from "../components/basiccard.tsx";
+import NavBar from "../components/navbar.js";
+import BasicCard from "../components/basiccard.js";
 import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 
