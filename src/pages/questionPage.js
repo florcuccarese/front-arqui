@@ -18,17 +18,17 @@ const images = [
     {
       url: 'https://cdn.discordapp.com/attachments/786469581178667041/1103776246980165752/AAAAAElFTkSuQmCC.png',
       title: 'Amazonas',
-      width: '40%',
+      width: '33.3%',
     },
     {
       url: 'https://cdn.discordapp.com/attachments/786469581178667041/1103776662845403166/xznJZgi2TkEgAAAABJRU5ErkJggg.png',
       title: 'Nilo',
-      width: '30%',
+      width: '33.3%',
     },
     {
       url: 'https://cdn.discordapp.com/attachments/786469581178667041/1103776478728044696/wf4NGLgUq0IAAAAABJRU5ErkJggg.png',
       title: 'Misisipi',
-      width: '30%',
+      width: '33.3%',
     },
   ];
   
@@ -112,7 +112,7 @@ export default function QuestionPage(props) {
             <Divider variant='middle'></Divider>
             </Grid>
             <Grid item marked="center" align="center" xs={12}>
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', minWidth: 300, width: '60%' }}>
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', minWidth: 300, width: '40%' }}>
             {images.map((image) => (
                 <ImageButton
                 focusRipple
