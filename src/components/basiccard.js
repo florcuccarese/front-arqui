@@ -15,7 +15,8 @@ export default function BasicCard(props) {
       '/question',
       {
         state: {
-          questions:props.questions
+          questions:props.questions,
+          testId: props.testId
         }
       }
     );

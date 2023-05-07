@@ -12,6 +12,7 @@ import { useLocation } from 'react-router-dom';
 
 
 
+
 const MainPage = styled('div')(({ theme }) => ({
   margin: theme.spacing(4), 
 }));
@@ -87,7 +88,30 @@ const url3 = 'https://cdn.discordapp.com/attachments/786469581178667041/11037764
 export default function QuestionPage(props) {
   const theme = createTheme();
   const {state} = useLocation();
-  const { questions} = state;
+  const { questions, testId} = state;
+
+  const URL = process.env.REACT_APP_API_URL;
+
+  const sendAnwer = async()=>{
+    const data = {
+      "user": 10,
+      "testId": testId,
+      "questionId": 0,
+      "answerId": 0
+    }
+    const res = await fetch(`${URL}/SubmitAnswer`, {
+          method: 'POST',
+          body: JSON.stringify(data),
+          mode: "cors",
+          headers: {
+            'Accept': 'application/x-www-form-urlencoded',
+            'Origin': 'http://localhost:3006',
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+        });
+        // if (!res.ok)
+        //   alert('Error creando receta');
+  }
 
     return (
         <ThemeProvider theme={theme}>
@@ -185,7 +209,6 @@ export default function QuestionPage(props) {
             </Grid>
             </Grid>
           </MainPage>
-
         </ThemeProvider>
       );
 }
