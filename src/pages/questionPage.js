@@ -16,24 +16,10 @@ const MainPage = styled('div')(({ theme }) => ({
   margin: theme.spacing(4), 
 }));
 
-const images = [
-    {
-      url: 'https://cdn.discordapp.com/attachments/786469581178667041/1103776246980165752/AAAAAElFTkSuQmCC.png',
-      title: 'Amazonas',
-      width: '33.3%',
-    },
-    {
-      url: 'https://cdn.discordapp.com/attachments/786469581178667041/1103776662845403166/xznJZgi2TkEgAAAABJRU5ErkJggg.png',
-      title: 'Nilo',
-      width: '33.3%',
-    },
-    {
-      url: 'https://cdn.discordapp.com/attachments/786469581178667041/1103776478728044696/wf4NGLgUq0IAAAAABJRU5ErkJggg.png',
-      title: 'Misisipi',
-      width: '33.3%',
-    },
-  ];
-  
+const url1 = 'https://cdn.discordapp.com/attachments/786469581178667041/1103776246980165752/AAAAAElFTkSuQmCC.png'
+const url2 = 'https://cdn.discordapp.com/attachments/786469581178667041/1103776662845403166/xznJZgi2TkEgAAAABJRU5ErkJggg.png'
+const url3 = 'https://cdn.discordapp.com/attachments/786469581178667041/1103776478728044696/wf4NGLgUq0IAAAAABJRU5ErkJggg.png'
+
   const ImageButton = styled(ButtonBase)(({ theme }) => ({
     position: 'relative',
     height: 200,
@@ -124,7 +110,7 @@ export default function QuestionPage(props) {
                     width: '33.3%',
                 }}
                 >
-                <ImageSrc style={{ backgroundImage: `https://cdn.discordapp.com/attachments/786469581178667041/1103776246980165752/AAAAAElFTkSuQmCC.png` }} />
+                <ImageSrc style={{ backgroundImage: `url(${url1})` }} />
                 <ImageBackdrop className="MuiImageBackdrop-root" />
                 <Image>
                     <Typography
@@ -150,7 +136,7 @@ export default function QuestionPage(props) {
                     width: '33.3%',
                 }}
                 >
-                <ImageSrc style={{ backgroundImage: `https://cdn.discordapp.com/attachments/786469581178667041/1103776662845403166/xznJZgi2TkEgAAAABJRU5ErkJggg.png` }} />
+                <ImageSrc style={{ backgroundImage: `url(${url2})` }} />
                 <ImageBackdrop className="MuiImageBackdrop-root" />
                 <Image>
                     <Typography
@@ -176,7 +162,7 @@ export default function QuestionPage(props) {
                     width: '33.3%',
                 }}
                 >
-                <ImageSrc style={{ backgroundImage: `https://cdn.discordapp.com/attachments/786469581178667041/1103776478728044696/wf4NGLgUq0IAAAAABJRU5ErkJggg.png` }} />
+                <ImageSrc style={{ backgroundImage: `url(${url3})` }} />
                 <ImageBackdrop className="MuiImageBackdrop-root" />
                 <Image>
                     <Typography
