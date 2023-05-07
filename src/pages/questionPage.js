@@ -8,6 +8,8 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Divider from '@mui/material/Divider';
+import { useLocation } from 'react-router-dom';
+
 
 
 const MainPage = styled('div')(({ theme }) => ({
@@ -98,6 +100,8 @@ const images = [
     
 export default function QuestionPage(props) {
   const theme = createTheme();
+  const {state} = useLocation();
+  const { questions} = state;
 
     return (
         <ThemeProvider theme={theme}>
@@ -107,21 +111,20 @@ export default function QuestionPage(props) {
             <Grid container alignItems={"center"} alignContent={"center"} spacing={11} mt={9}>
             <Grid item xs={12}>
             <Typography variant="h4" marked="center" align="center" component="h2" mb={6}>
-                Pregunta
+                {questions[0].question}
             </Typography>
             <Divider variant='middle'></Divider>
             </Grid>
             <Grid item marked="center" align="center" xs={12}>
             <Box sx={{ display: 'flex', flexWrap: 'wrap', minWidth: 300, width: '40%' }}>
-            {images.map((image) => (
                 <ImageButton
                 focusRipple
-                key={image.title}
+                key={questions[0].answer1}
                 style={{
-                    width: image.width,
+                    width: '33.3%',
                 }}
                 >
-                <ImageSrc style={{ backgroundImage: `url(${image.url})` }} />
+                <ImageSrc style={{ backgroundImage: `https://cdn.discordapp.com/attachments/786469581178667041/1103776246980165752/AAAAAElFTkSuQmCC.png` }} />
                 <ImageBackdrop className="MuiImageBackdrop-root" />
                 <Image>
                     <Typography
@@ -135,12 +138,63 @@ export default function QuestionPage(props) {
                         pb: (theme) => `calc(${theme.spacing(1)} + 6px)`,
                     }}
                     >
-                    {image.title}
+                    {questions[0].answer1}
                     <ImageMarked className="MuiImageMarked-root" />
                     </Typography>
                 </Image>
                 </ImageButton>
-            ))}
+                <ImageButton
+                focusRipple
+                key={questions[0].answer2}
+                style={{
+                    width: '33.3%',
+                }}
+                >
+                <ImageSrc style={{ backgroundImage: `https://cdn.discordapp.com/attachments/786469581178667041/1103776662845403166/xznJZgi2TkEgAAAABJRU5ErkJggg.png` }} />
+                <ImageBackdrop className="MuiImageBackdrop-root" />
+                <Image>
+                    <Typography
+                    component="span"
+                    variant="subtitle1"
+                    color="inherit"
+                    sx={{
+                        position: 'relative',
+                        p: 4,
+                        pt: 2,
+                        pb: (theme) => `calc(${theme.spacing(1)} + 6px)`,
+                    }}
+                    >
+                    {questions[0].answer2}
+                    <ImageMarked className="MuiImageMarked-root" />
+                    </Typography>
+                </Image>
+                </ImageButton>
+                <ImageButton
+                focusRipple
+                key={questions[0].answer3}
+                style={{
+                    width: '33.3%',
+                }}
+                >
+                <ImageSrc style={{ backgroundImage: `https://cdn.discordapp.com/attachments/786469581178667041/1103776478728044696/wf4NGLgUq0IAAAAABJRU5ErkJggg.png` }} />
+                <ImageBackdrop className="MuiImageBackdrop-root" />
+                <Image>
+                    <Typography
+                    component="span"
+                    variant="subtitle1"
+                    color="inherit"
+                    sx={{
+                        position: 'relative',
+                        p: 4,
+                        pt: 2,
+                        pb: (theme) => `calc(${theme.spacing(1)} + 6px)`,
+                    }}
+                    >
+                    {questions[0].answer3}
+                    <ImageMarked className="MuiImageMarked-root" />
+                    </Typography>
+                </Image>
+                </ImageButton>
             </Box>
             </Grid>
             </Grid>

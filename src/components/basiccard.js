@@ -4,9 +4,22 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-
+import { useNavigate } from "react-router-dom";
 
 export default function BasicCard(props) {
+
+  let navigate = useNavigate();
+
+  const handleExam =() => {
+    navigate(
+      '/question',
+      {
+        state: {
+          questions:props.questions
+        }
+      }
+    );
+  }
   return (
     <Card sx={{ minWidth: 275 }}>
       <CardContent>
@@ -21,7 +34,7 @@ export default function BasicCard(props) {
         </Typography>
       </CardContent>
       <CardActions>
-        {props.submited ? <Button disabled size="small">Realizar test</Button> : <Button size="small">Realizar test</Button>}
+        {props.submited ? <Button disabled size="small">Realizar test</Button> : <Button onClick={handleExam} size="small">Realizar test</Button>}
       </CardActions>
     </Card>
   );
