@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import NavBar from "../components/navbar.js";
@@ -14,36 +14,32 @@ const MainPage = styled('div')(({ theme }) => ({
 
 export default function TestPage() {
 
+  const [listTest, setListTest] = useState([]);
+
   const URL = process.env.REACT_APP_API_URL;
 
-  const tests = async () =>{ 
+  const getTests = useCallback( async () =>{ 
     const response = await fetch(`${URL}/GetTestsList`,
     {
       method: 'GET',
-      mode: "no-cors",
+      mode: "cors",
       headers: {
-        'Content-Type': 'application/json'
-      }
+          'Accept': 'application/x-www-form-urlencoded',
+          'Origin': 'http://localhost:3006',
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
     });
-    console.log(await response)
+    const data = await response.json();
+    console.log(data);
+    setListTest(data)
+  },[])
 
-  }
+  useEffect(() => {
+    getTests()
+  }, [getTests])
+
 
   
-// const editRecipe = async(newData,id) => {
-//   const res = await fetch(`http://localhost:8000/recipe/${id}`, {
-//       method: 'PUT',
-//       //mode: "no-cors",
-//       body: JSON.stringify(newData),
-//       headers: {
-//         'Content-Type': 'application/json'
-//       }
-//     });
-//   const data = await res
-//   console.log(res)
-//   updateFilter()
-// }
-
   const theme = createTheme();
 
     return (
@@ -51,24 +47,20 @@ export default function TestPage() {
           <CssBaseline />
           <NavBar auth={true}/>
             <MainPage>
-            <Grid container spacing={2}>
+            <Grid container spacing={2}> 
+              {listTest.map (el => (
+                <Grid item xs={4}>
+                <BasicCard key={el.testId} name={el.name} score={el.score} submited={el.submited}></BasicCard>
+                </Grid>
+              ))}
             <Button
               onClick={() => {
-                tests();
-                console.log(URL)
+                getTests();
+                console.log(URL);
               }}
             >
               Click me
             </Button>
-              <Grid item xs={4}>
-              <BasicCard name="Rios" score="Test no realizado"></BasicCard>
-              </Grid>
-              <Grid item xs={4}>
-              <BasicCard name="Rios" score="Test no realizado"></BasicCard>
-              </Grid>
-              <Grid item xs={4}>
-              <BasicCard name="Rios" score="Test no realizado"></BasicCard>
-              </Grid>
             </Grid>  
           </MainPage>
         </ThemeProvider>
