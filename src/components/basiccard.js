@@ -14,14 +14,14 @@ export default function BasicCard(props) {
           {props.name}
         </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          {props.score}
+          {props.score == -1 ?  "Examen sin nota" : props.score }
         </Typography>
         <Typography variant="body2">
             Realiza este test para evaluar tu conocimiento sobre {props.name}
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Realizar test</Button>
+        {props.submited ? <Button disabled size="small">Realizar test</Button> : <Button size="small">Realizar test</Button>}
       </CardActions>
     </Card>
   );

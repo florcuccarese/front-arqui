@@ -49,18 +49,10 @@ export default function TestPage() {
             <MainPage>
             <Grid container spacing={2}> 
               {listTest.map (el => (
-                <Grid item xs={4}>
+                <Grid key={el.testId} item xs={4}>
                 <BasicCard key={el.testId} name={el.name} score={el.score} submited={el.submited}></BasicCard>
                 </Grid>
               ))}
-            <Button
-              onClick={() => {
-                getTests();
-                console.log(URL);
-              }}
-            >
-              Click me
-            </Button>
             </Grid>  
           </MainPage>
         </ThemeProvider>
