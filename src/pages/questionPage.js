@@ -98,6 +98,7 @@ export default function QuestionPage(props) {
 
 
   const URL = process.env.REACT_APP_API_URL;
+  const URL_SQS = process.env.REACT_APP_API_ANSWER;
 
   const sendAnwer = async (idAnswer)=>{
     const answerData = {
@@ -106,14 +107,14 @@ export default function QuestionPage(props) {
       "questionId": data[0].questionId,
       "answerId": idAnswer
     }
-    const res = await fetch(`${URL}/SubmitAnswerNoSQS`, {
+    const res = await fetch(`${URL}` + `${URL_SQS}`, {
           method: 'POST',
           body: JSON.stringify(answerData),
           mode: "cors",
           headers: {
             'Accept': 'application/x-www-form-urlencoded',
             'Origin': 'http://localhost:3006',
-            'Content-Type': 'aplication/json',
+            'Content-Type': 'application/json'
           },
         });
       updateQuestion();
@@ -177,6 +178,7 @@ export default function QuestionPage(props) {
                 </Image>
                 </ImageButton>
                 <ImageButton
+                onClick={() => sendAnwer(2)}
                 focusRipple
                 key={data[0].answer2}
                 style={{
@@ -203,6 +205,7 @@ export default function QuestionPage(props) {
                 </Image>
                 </ImageButton>
                 <ImageButton
+                onClick={() => sendAnwer(3)}
                 focusRipple
                 key={data[0].answer3}
                 style={{
