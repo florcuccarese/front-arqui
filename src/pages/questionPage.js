@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import NavBar from "../components/navbar.js";
@@ -9,6 +9,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Divider from '@mui/material/Divider';
 import { useLocation } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -86,14 +87,17 @@ const url3 = 'https://cdn.discordapp.com/attachments/786469581178667041/11037764
   }));
     
 export default function QuestionPage(props) {
+  let navigate = useNavigate();
   const theme = createTheme();
   const {state} = useLocation();
   const { questions, testId} = state;
+  const [data, setData] = useState(questions);
+
 
   const URL = process.env.REACT_APP_API_URL;
 
   const sendAnwer = async()=>{
-    const data = {
+    const answerData = {
       "user": 10,
       "testId": testId,
       "questionId": 0,
@@ -113,6 +117,23 @@ export default function QuestionPage(props) {
         //   alert('Error creando receta');
   }
 
+
+  const updateQuestion = () => {
+    if (data.length == 0){
+      navigate('/')
+    }else{
+      console.log(data);
+      const newData = [...data];
+      newData.shift();
+      setData(newData);
+      console.log(data);
+    }  
+  }
+
+  useEffect (() => {
+    updateQuestion();
+  },[questions])
+
     return (
         <ThemeProvider theme={theme}>
           <CssBaseline />
@@ -121,15 +142,16 @@ export default function QuestionPage(props) {
             <Grid container alignItems={"center"} alignContent={"center"} spacing={11} mt={9}>
             <Grid item xs={12}>
             <Typography variant="h4" marked="center" align="center" component="h2" mb={6}>
-                {questions[0].question}
+                {data[0].question}
             </Typography>
             <Divider variant='middle'></Divider>
             </Grid>
             <Grid item marked="center" align="center" xs={12}>
             <Box sx={{ display: 'flex', flexWrap: 'wrap', minWidth: 300, width: '40%' }}>
                 <ImageButton
+                onClick={() => updateQuestion()}
                 focusRipple
-                key={questions[0].answer1}
+                key={data[0].answer1}
                 style={{
                     width: '33.3%',
                 }}
@@ -148,14 +170,14 @@ export default function QuestionPage(props) {
                         pb: (theme) => `calc(${theme.spacing(1)} + 6px)`,
                     }}
                     >
-                    {questions[0].answer1}
+                    {data[0].answer1}
                     <ImageMarked className="MuiImageMarked-root" />
                     </Typography>
                 </Image>
                 </ImageButton>
                 <ImageButton
                 focusRipple
-                key={questions[0].answer2}
+                key={data[0].answer2}
                 style={{
                     width: '33.3%',
                 }}
@@ -174,14 +196,14 @@ export default function QuestionPage(props) {
                         pb: (theme) => `calc(${theme.spacing(1)} + 6px)`,
                     }}
                     >
-                    {questions[0].answer2}
+                    {data[0].answer2}
                     <ImageMarked className="MuiImageMarked-root" />
                     </Typography>
                 </Image>
                 </ImageButton>
                 <ImageButton
                 focusRipple
-                key={questions[0].answer3}
+                key={data[0].answer3}
                 style={{
                     width: '33.3%',
                 }}
@@ -200,7 +222,7 @@ export default function QuestionPage(props) {
                         pb: (theme) => `calc(${theme.spacing(1)} + 6px)`,
                     }}
                     >
-                    {questions[0].answer3}
+                    {data[0].answer3}
                     <ImageMarked className="MuiImageMarked-root" />
                     </Typography>
                 </Image>
