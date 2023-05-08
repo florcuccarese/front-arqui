@@ -28,10 +28,10 @@ export default function BasicCard(props) {
           {props.name}
         </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          {props.score == -1 ?  "Examen sin nota" : props.score }
+          {props.submited && props.score == -1 ? "Se está revisando el examen" : (props.score == -1 ? "Examen sin nota" : props.score)}
         </Typography>
         <Typography variant="body2">
-            Realiza este test para evaluar tu conocimiento sobre {props.name}
+            Realizá este test para evaluar tu conocimiento sobre {props.name}
         </Typography>
       </CardContent>
       <CardActions>

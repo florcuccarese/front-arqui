@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Divider from '@mui/material/Divider';
-import { json, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 
 
