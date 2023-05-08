@@ -30,7 +30,7 @@ export default function TestPage() {
         },
     });
     const data = await response.json();
-    console.log(data);
+    // console.log(data);
     setListTest(data)
   },[])
 

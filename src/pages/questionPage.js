@@ -91,9 +91,9 @@ export default function QuestionPage(props) {
   const theme = createTheme();
   const {state} = useLocation();
   const questions = state.questions;
-  console.log(questions)
+  // console.log(questions)
   const testId = state.testId;
-  console.log(testId)
+  // console.log(testId)
   const [data, setData] = useState(questions);
 
 
@@ -125,11 +125,10 @@ export default function QuestionPage(props) {
     if (data.length == 1){
       navigate('/')
     }else if (data.length > 1) {
-      console.log(data);
+      // console.log(data);
       const newData = [...data];
       newData.shift();
       setData(newData);
-      console.log(data);
     }  
   }
 
