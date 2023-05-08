@@ -50,7 +50,7 @@ export default function TestPage() {
             <Grid container spacing={2}> 
               {listTest.map (el => (
                 <Grid key={el.testId} item xs={4}>
-                <BasicCard key={el.testId} name={el.name} score={el.score} submited={el.submited} questions={el.questions} ></BasicCard>
+                <BasicCard key={el.testId} name={el.name} score={el.score} submited={el.submited} questions={el.questions} testId={el.testId}></BasicCard>
                 </Grid>
               ))}
             </Grid>  

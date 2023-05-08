@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Divider from '@mui/material/Divider';
-import { useLocation } from 'react-router-dom';
+import { json, useLocation } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 
 
@@ -90,7 +90,10 @@ export default function QuestionPage(props) {
   let navigate = useNavigate();
   const theme = createTheme();
   const {state} = useLocation();
-  const { questions, testId} = state;
+  const questions = state.questions;
+  console.log(questions)
+  const testId = state.testId;
+  console.log(testId)
   const [data, setData] = useState(questions);
 
 
@@ -103,14 +106,14 @@ export default function QuestionPage(props) {
       "questionId": data[0].questionId,
       "answerId": idAnswer
     }
-    const res = await fetch(`${URL}/SubmitAnswer`, {
+    const res = await fetch(`${URL}/SubmitAnswerNoSQS`, {
           method: 'POST',
           body: JSON.stringify(answerData),
           mode: "cors",
           headers: {
             'Accept': 'application/x-www-form-urlencoded',
             'Origin': 'http://localhost:3006',
-            'Content-Type': 'application/x-www-form-urlencoded',
+            'Content-Type': 'aplication/json',
           },
         });
       updateQuestion();
