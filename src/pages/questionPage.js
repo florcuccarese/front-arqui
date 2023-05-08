@@ -119,9 +119,9 @@ export default function QuestionPage(props) {
 
 
   const updateQuestion = () => {
-    if (data.length == 0){
+    if (data.length == 1){
       navigate('/')
-    }else{
+    }else if (data.length > 1) {
       console.log(data);
       const newData = [...data];
       newData.shift();
@@ -131,8 +131,7 @@ export default function QuestionPage(props) {
   }
 
   useEffect (() => {
-    updateQuestion();
-  },[questions])
+  },[data])
 
     return (
         <ThemeProvider theme={theme}>
