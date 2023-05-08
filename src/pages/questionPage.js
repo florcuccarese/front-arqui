@@ -96,16 +96,16 @@ export default function QuestionPage(props) {
 
   const URL = process.env.REACT_APP_API_URL;
 
-  const sendAnwer = async()=>{
+  const sendAnwer = async (idAnswer)=>{
     const answerData = {
       "user": 10,
       "testId": testId,
-      "questionId": 0,
-      "answerId": 0
+      "questionId": data[0].questionId,
+      "answerId": idAnswer
     }
     const res = await fetch(`${URL}/SubmitAnswer`, {
           method: 'POST',
-          body: JSON.stringify(data),
+          body: JSON.stringify(answerData),
           mode: "cors",
           headers: {
             'Accept': 'application/x-www-form-urlencoded',
@@ -113,8 +113,7 @@ export default function QuestionPage(props) {
             'Content-Type': 'application/x-www-form-urlencoded',
           },
         });
-        // if (!res.ok)
-        //   alert('Error creando receta');
+      updateQuestion();
   }
 
 
@@ -148,7 +147,7 @@ export default function QuestionPage(props) {
             <Grid item marked="center" align="center" xs={12}>
             <Box sx={{ display: 'flex', flexWrap: 'wrap', minWidth: 300, width: '40%' }}>
                 <ImageButton
-                onClick={() => updateQuestion()}
+                onClick={() => sendAnwer(1)}
                 focusRipple
                 key={data[0].answer1}
                 style={{
